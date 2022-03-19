@@ -1,0 +1,11 @@
+{% extends 'diseño/index.html' %}
+{% block index %}
+{% load static %}
+
+<form action="" method="POST">
+    {% csrf_token %}
+    {{form}}
+    <input type="submit" name="Submit">
+</form>
+
+{% endblock index %}

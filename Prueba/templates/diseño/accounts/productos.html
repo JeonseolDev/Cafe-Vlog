@@ -1,0 +1,33 @@
+{% extends 'diseño/index.html' %}
+{% block index %}
+{% load static %}
+
+<div class="row">
+    <div class="col-md">
+        <div class="card card-body">
+            <h1>Cursos</h1>
+        </div>
+        <div class="card card-body">
+            <table class="table">
+                <tr>
+                    <th>Curso</th>
+                    <th>Camada</th>
+                    <th>Precio</th>
+                </tr>
+
+                {% for i in productos %}
+                    <tr>
+                        <td>{{i.nombre}}</td>
+                        <td>{{i.camada}}</td>
+                        <td>{{i.precio}}</td>
+                        <td><a href="{% url 'update_order' i.id %}">Upgradear</a></td>
+                        <td><a href="{% url 'delete_order' i.id %}">Remover</a></td>
+                    </tr>
+                {% endfor %}
+                
+            </table>
+        </div>
+    </div>
+    
+</div>
+{% endblock index %}

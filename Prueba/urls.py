@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path
-from .views import inicio, cursos, nosotros, contacto, entrada, register, logout_view, cursos_create, buscar
+from .views import usuario, createOrder, deleteOrder, inicio, cursos, nosotros, contacto, entrada, productos, register, logout_view, cursos_create, buscar, updateOrder
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth.views import LoginView, LogoutView
@@ -17,7 +17,14 @@ urlpatterns = [
     path("cursos/", cursos_create, name="Cursos"),
     path("buscar/", buscar, name="Cursos_buscar"),
     path('entrada.html', entrada),
+    path('productos/', productos, name='productos'),
+    path('cliente/<str:pk_test>/', usuario, name="usuario"),
+
+    path('create_order/', createOrder, name="create_order"),
+    path('update_order/<str:pk>/', updateOrder, name="update_order"),
+    path('delete_order/<str:pk>/', deleteOrder, name="delete_order"),
     path('admin/', admin.site.urls),
+    
 ] 
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

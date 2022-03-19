@@ -3,9 +3,10 @@ from django.template import Context, Template, loader
 from django.shortcuts import redirect, render
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
-from .models import Curso
-from Prueba.forms import CreateUser, CursoFormulario, BusquedaCurso
+from .models import Curso, Order, Producto, Usuario
+from Prueba.forms import CreateUser, CursoFormulario, BusquedaCurso, OrderForm
 from django.contrib import messages
+from .decorators import unauthenticated_user, allowed_users, admin_only
 
 
 def inicio(request):
@@ -68,13 +69,15 @@ def register(request):
 # def busqueda_login(request):
 #     buscador = LoginBusqueda()
 
+
 def cursos_create(request):
 
     if request.method == 'POST':
         miFormulario = CursoFormulario(request.POST)
         if miFormulario.is_valid():
             informacion = miFormulario.cleaned_data
-            curso = Curso(nombre=informacion['curso'], camada=informacion['camada']) 
+            curso = Curso(nombre=informacion['curso'], camada=informacion['camada'], precio=informacion['precio'],
+            descripcion=informacion['descripcion']) 
             curso.save()
             return render(request, "diseño/cursos.html", {"curso":curso})
     else: 
@@ -91,3 +94,53 @@ def buscar(request):
     
     buscador = BusquedaCurso()
     return render(request, "diseño/buscador.html", {'buscador': buscador, 'cursos': cursos, 'dato': dato})
+
+
+def productos(request):
+    productos = Curso.objects.all()
+    
+    return render(request, 'diseño/accounts/productos.html', {'productos': productos})
+
+def usuario(request, pk_test):
+    usuario = Usuario.objects.get(id=pk_test)
+    
+    orders = Usuario.order_set.all()
+    order_count = orders.count()
+
+    context = {'Usuario': Usuario, 'orders': orders, 'order_count': order_count}
+    return render(request, 'diseño/accounts/cliente.html')
+
+def createOrder(request):
+	form = OrderForm()
+	if request.method == 'POST':
+		#print('Printing POST:', request.POST)
+		form = OrderForm(request.POST)
+		if form.is_valid():
+			form.save()
+			return redirect('/')
+
+	context = {'form':form}
+	return render(request, 'diseño/accounts/order.html', context)
+
+def updateOrder(request, pk):
+
+	order = Curso.objects.get(id=pk)
+	form = OrderForm(instance=order)
+
+	if request.method == 'POST':
+		form = CursoFormulario(request.POST, instance=order)
+		if form.is_valid():
+			form.save()
+			return redirect('/')
+
+	context = {'form':form}
+	return render(request, 'diseño/accounts/order.html', context)
+
+def deleteOrder(request, pk):
+	order = Curso.objects.get(id=pk)
+	if request.method == "POST":
+		order.delete()
+		return redirect('productos')
+
+	context = {'item':order}
+	return render(request, 'diseño/accounts/delete.html', context)

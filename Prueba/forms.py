@@ -3,7 +3,9 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm  
 from django.core.exceptions import ValidationError  
 from django.forms.fields import EmailField  
-from django.forms.forms import Form  
+from django.forms.forms import Form
+
+from Prueba.models import Curso, Order  
   
 class CreateUser(UserCreationForm):  
     username = forms.CharField(label='Usuario', min_length=5, max_length=150)  
@@ -43,16 +45,22 @@ class CreateUser(UserCreationForm):
 
 
 class CursoFormulario(forms.Form):
-
-    #Especificar los campos
-    curso = forms.CharField(max_length=30)
+    
+    curso = forms.CharField(max_length=20)
     camada = forms.IntegerField()
+    precio = forms.FloatField()
+    descripcion = forms.CharField(max_length=200)
 
 class ProfesorFormulario(forms.Form):   
-    nombre= forms.CharField(max_length=30)
-    apellido= forms.CharField(max_length=30)
-    email= forms.EmailField()
-    profesion= forms.CharField(max_length=30)
+    nombre = forms.CharField(max_length=30)
+    apellido = forms.CharField(max_length=30)
+    email = forms.EmailField()
+    profesion = forms.CharField(max_length=30)
 
 class BusquedaCurso(forms.Form):
-    partial_curso = forms.CharField(label='Buscar', max_length=20)
+    partial_curso = forms.CharField(label='Buscar', max_length=100)
+
+class OrderForm(forms.ModelForm):
+	class Meta:
+		model = Curso
+		fields = '__all__'
