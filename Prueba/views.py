@@ -101,14 +101,19 @@ def productos(request):
     
     return render(request, 'diseño/accounts/productos.html', {'productos': productos})
 
+def view_usuarios(request):
+    usuarios = Usuario.objects.all()
+
+    return render(request, 'diseño/accounts/usuario.html', {'usuarios':usuarios})
+
 def usuario(request, pk_test):
     usuario = Usuario.objects.get(id=pk_test)
     
-    orders = Usuario.order_set.all()
+    orders = usuario.order_set.all()
     order_count = orders.count()
 
-    context = {'Usuario': Usuario, 'orders': orders, 'order_count': order_count}
-    return render(request, 'diseño/accounts/cliente.html')
+    context = {'usuario': usuario, 'orders': orders, 'order_count': order_count}
+    return render(request, 'diseño/accounts/cliente.html', context)
 
 def createOrder(request):
 	form = OrderForm()

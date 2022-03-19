@@ -1,10 +1,13 @@
+{% extends 'diseño/index.html' %}
+{% block index %}
+
 <div class="row">
 	<div class="col-md">
 		<div class="card card-body">
-			<h5>cliente:</h5>
+			<h5>usuario:</h5>
 			<hr>
-			<a class="btn btn-outline-info  btn-sm btn-block" href="">Update cliente</a>
-			<a class="btn btn-outline-danger  btn-sm btn-block" href="">Delete cliente</a>
+			<a class="btn btn-outline-info  btn-sm btn-block" href="">Update usuario</a>
+			<a class="btn btn-outline-danger  btn-sm btn-block" href="">Delete usuario</a>
 
 		</div>
 	</div>
@@ -13,8 +16,8 @@
 		<div class="card card-body">
 			<h5>Contact Information</h5>
 			<hr>
-			<p>Email: {{cliente.email}}</p>
-			<p>Phone: {{cliente.phone}}</p>
+			<p>Email: {{usuario.email}}</p>
+			<p>Phone: {{usuario.phone}}</p>
 		</div>
 	</div>
 
@@ -47,20 +50,20 @@
 		<div class="card card-body">
 			<table class="table table-sm">
 				<tr>
-					<th>Product</th>
-					<th>Category</th>
-					<th>Date Orderd</th>
-					<th>Status</th>
+					<th>Curso</th>
+					<th>Categoria</th>
+					<th>Fecha</th>
+					<th>Estado</th>
 					<th>Update</th>
-					<th>Remove</th>
+					<th>Remover</th>
 				</tr>
 
 				{% for order in orders %}
 
 				<tr>
-					<td>{{order.product}}</td>
-					<td>{{order.product.category}}</td>
-					<td>{{order.date_created}}</td>
+					<td>{{order.comprador}}</td>
+					<td>{{order.producto}}</td>
+					<td>{{order.data_creada}}</td>
 					<td>{{order.status}}</td>
 					<td><a class="btn btn-sm btn-info" href="{% url 'update_order' order.id %}">Update</a></td>
 
@@ -72,3 +75,4 @@
 		</div>
 	</div>
 </div>
+{% endblock index %}

@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path
-from .views import usuario, createOrder, deleteOrder, inicio, cursos, nosotros, contacto, entrada, productos, register, logout_view, cursos_create, buscar, updateOrder
+from .views import usuario, createOrder, deleteOrder, inicio, cursos, nosotros, contacto, entrada, productos, register, logout_view, cursos_create, buscar, updateOrder, view_usuarios
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth.views import LoginView, LogoutView
@@ -18,7 +18,8 @@ urlpatterns = [
     path("buscar/", buscar, name="Cursos_buscar"),
     path('entrada.html', entrada),
     path('productos/', productos, name='productos'),
-    path('cliente/<str:pk_test>/', usuario, name="usuario"),
+    path('usuario/', view_usuarios, name="usuarios"),
+    path('usuario/<str:pk_test>/', usuario, name="usuario"),
 
     path('create_order/', createOrder, name="create_order"),
     path('update_order/<str:pk>/', updateOrder, name="update_order"),
