@@ -1,27 +1,48 @@
 {% extends 'diseño/index.html' %}
 {% block index %}
 {% load static %}
-<div id="login-box" class = "login">
-    <div class="left">
-      <h1>Sign up</h1>
-      
-      <input type="text" name="username" placeholder="Username" />
-      <input type="text" name="email" placeholder="E-mail" />
-      <input type="password" name="password" placeholder="Password" />
-      <input type="password" name="password2" placeholder="Retype password" />
-      
-      <input type="submit" name="signup_submit" value="Sign me up" />
+
+
+
+<form method="post" >  
+    {% csrf_token %}  
+    <div id="login-box" class = "login">
+        <div class="left">
+            <span class="loginwith">Registrate</span>
+        <table>  
+            {{form.username}}
+            {{form.password1}}
+            {{form.password2}}
+            {{form.email}}
+             <tr>  
+                <td></td>  
+            </tr>  
+         </table> 
+        {% comment %} <input type="text" name="username" placeholder="Username" />
+        <input type="text" name="email" placeholder="E-mail" />
+        <input type="password" name="password" placeholder="Password" />
+        <input type="password" name="password2" placeholder="Retype password" /> {% endcomment %}
+        
+        <input type="submit" name="signup_submit signup_margin" value="Registrarse" />
+        </div>
+        
+        <div class="right">
+        <span class="loginwith">Registrate<br/>Redes Sociales</span>
+        
+        <button class="social-signin facebook">Entrar con Facebook</button>
+        <button class="social-signin twitter">Entrar con Twitter</button>
+        <button class="social-signin google">Entrar con Google+</button>
+        </div>
+        <div class="or">O</div>
     </div>
-    
-    <div class="right">
-      <span class="loginwith">Sign in with<br />social network</span>
-      
-      <button class="social-signin facebook">Log in with facebook</button>
-      <button class="social-signin twitter">Log in with Twitter</button>
-      <button class="social-signin google">Log in with Google+</button>
-    </div>
-    <div class="or">OR</div>
-  </div>
+    {% if messages %}  
+        <ul>   
+            {% for message in messages %}  
+                <li>{{ message }}</li>  
+                {% endfor %}  
+        </ul>   
+    {% endif %}  
+{% comment %}     
 
 <div class = "login">  
   
@@ -43,15 +64,14 @@
                     <td></td>  
                     <td><input type="submit" name="submit" value="Register" /></td>  
                 </tr>  
-             </table>  
-         </form>  
-     </div>  
+             </table>   {% endcomment %}
+</form>  
 <script>
 var form_fields = document.getElementsByTagName('input')
 form_fields[1].placeholder='Usuario';
 form_fields[2].placeholder='Contraseña';
 form_fields[3].placeholder='Repetir Contraseña';
-form_fields[4].placeholder='Repetir Contraseña';
+form_fields[4].placeholder='Email';
 
 
 for (var field in form_fields){	

@@ -24,7 +24,13 @@
                     <a class="navegacion__enlace" href={% url 'Nosotros' %}>Nosotros</a>
                     <a class="navegacion__enlace" href={% url 'Cursos' %}>Cursos</a>
                     <a class="navegacion__enlace" href={% url 'Contacto' %}>Contacto</a>
+                    {% if user.is_authenticated %}
+                    <span class="navegacion__enlace">Hola {{request.user}}</span>
+                    <a class="navegacion__enlace" href="{% url 'logout' %}">Logout</a>
+                    {% else %}
                     <a class="navegacion__enlace" href="{% url 'login' %}">Login/Registro</a>
+                    {% endif %}
+                    
                  <!--<a class="navegacion__enlace" href="{% url 'logout' %}">Logout<a> -->
                 </nav>
             </div>

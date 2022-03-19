@@ -1,0 +1,20 @@
+{% extends 'diseño/cursos.html' %}
+{% block buscador %}
+<form action="" method="GET" >
+    {% csrf_token %}
+    <div class="cursos_form">
+        {{buscador}}
+    <input type="submit", value="Buscar">
+    </div>
+</form>
+{% if dato %}
+    Se busco {{dato}}
+    {% for curso in cursos %}
+    <li>
+        {{curso}}
+    </li>
+    {% endfor %}
+{% else %}
+    No se busco nada.
+{% endif %}
+{% endblock buscador %}
