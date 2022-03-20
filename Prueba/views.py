@@ -7,6 +7,7 @@ from .models import Curso, Order, Producto, Usuario
 from Prueba.forms import CreateUser, CursoFormulario, BusquedaCurso, OrderForm
 from django.contrib import messages
 from .decorators import unauthenticated_user, allowed_users, admin_only
+from django.contrib.auth.models import Group
 
 
 def inicio(request):
@@ -44,13 +45,22 @@ def logout_view(request):
     return redirect('login')
 
 def register(request):
+    f = CreateUser(request.POST)
     if request.method == 'POST':
-        f = CreateUser(request.POST)
         if f.is_valid():
-            f.save()
-            messages.success(request, 'Cuenta creada correctamente')
-            return redirect('login')
+            user = f.save()
+            username = f.cleaned_data.get('username')
 
+            group = Group.objects.get(name='usuario')
+            user.groups.add(group)
+
+            Usuario.objects.create(
+				user=user,
+				nombre=user.username,
+				)
+
+            messages.success(request, 'Cuenta creada: ' + username)
+            return redirect('login')
     else:
         f = CreateUser()
 
@@ -149,3 +159,9 @@ def deleteOrder(request, pk):
 
 	context = {'item':order}
 	return render(request, 'diseño/accounts/delete.html', context)
+
+def userPage(request):
+    orders = request.user.usuario.order_set.all()
+
+    context = {'orders':orders}
+    return render(request, 'diseño/accounts/user.html')
