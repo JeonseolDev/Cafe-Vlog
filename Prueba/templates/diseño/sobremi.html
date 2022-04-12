@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends 'diseño/index.html' %}
+{% block index %}
+{% load static %}
+    <main class="contenedor">
+        <h3 class="centrar-texto">Sobre mi</h3>
+
+        <div class="sobre-nosotros">
+            <div class="sobre-nosotros__imagen">
+                <img src="{% static 'img/nosotros.jpg' %}" alt="imagen nosotros">
+            </div>
+            <div class="sobre-nosotros__texto">
+                <p>Mi nombre es Rodrigo, tengo 22 años y empece mi carrera como desarrollador con el desarrollo web siendo autodidacta, asi
+                    cree esta pagina, aunque reciclando algunos templates que venia haciendo anteriormente, 
+                    seguido me interese en el desarrollo de software asi que empece con python hasta llegar al curso de desarrollo de apps web en backend.</p>
+            </div>
+        </div>
+    </main>
+    </main>
+{% endblock index %}

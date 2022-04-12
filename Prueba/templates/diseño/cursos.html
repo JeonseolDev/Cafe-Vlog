@@ -7,72 +7,33 @@
 {% endif %}
 {% load static %}
 {% block buscador %}
-    <form action="" method="POST" >
-        {% csrf_token %}
-        <div class="cursos_form">
-            <span>Cursos:<span><input type="text" name="curso" class="input_modify">
-            <span>Camada:<span><input type="text" name="camada" class="input_modify">
-            <span>Precio:</span><input type="number" name="precio" class="input_modify input_number">
-            <span>Descripcion:</span><input type="text" name="descripcion" class="input_modify ">
-        <input type="submit", value="Crear">
-        </div>
     </form>
     <a href="{% url 'Cursos_buscar' %}" class="buscador">Buscador de Cursos</a>
 {% endblock buscador %}
+
     <main class="contenedor">
         <h3 class="centrar-texto">Nuestros Proximos Cursos y Talleres</h3>
-
+        {% for i in productos %}  
             <div class="curso">
+                             
                 <div class="curso__imagen">
-                    <img src="{% static 'img/curso1.jpg' %}" alt="">
+                    <img src="{{i.imagen.url}}" alt="">
                 </div>
                 <div class="curso__informacion">
-                    <h4 class="no-margin">Tecnicas de extraccion de café</h4>
+                    <h4 class="no-margin">{{i.nombre}}</h4>
                     <p class="curso__label">Precio: 
-                        <span class="curso__info">Gratis</span>
+                        <span class="curso__info">{{i.precio}}</span>
                     </p>
-                    <p class="curso__label">Cupo: 
-                        <span class="curso__info">20</span>
+                    <p class="curso__label">Categoria: 
+                        <span class="curso__info">{{i.descripcion}}</span>
                     </p>
                     <p class="curso_descripcion">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi nisi at animi, reiciendis consequuntur reprehenderit ullam quas, enim quaerat dolore neque consectetur laborum eos eligendi a nihil vitae maiores quisquam.
+                        {{i.presentacion | safe}}
                     </p>
                 </div>
+                
             </div>
-            <div class="curso">
-                <div class="curso__imagen">
-                    <img src="{% static 'img/curso2.jpg' %}" alt="">
-                </div>
-                <div class="curso__informacion">
-                    <h4 class="no-margin">Taller para tostar y moler granos</h4>
-                    <p class="curso__label">Precio: 
-                        <span class="curso__info">Gratis</span>
-                    </p>
-                    <p class="curso__label">Cupo: 
-                        <span class="curso__info">20</span>
-                    </p>
-                    <p class="curso_descripcion">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi nisi at animi, reiciendis consequuntur reprehenderit ullam quas, enim quaerat dolore neque consectetur laborum eos eligendi a nihil vitae maiores quisquam.
-                    </p>
-                </div>
-            </div>
-            <div class="curso">
-                <div class="curso__imagen">
-                    <img src="{% static 'img/curso3.jpg' %}" alt="">
-                </div>
-                <div class="curso__informacion">
-                    <h4 class="no-margin">4 recetas de cafe para principiantes</h4>
-                    <p class="curso__label">Precio: 
-                        <span class="curso__info">Gratis</span>
-                    </p>
-                    <p class="curso__label">Cupo: 
-                        <span class="curso__info">20</span>
-                    </p>
-                    <p class="curso_descripcion">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi nisi at animi, reiciendis consequuntur reprehenderit ullam quas, enim quaerat dolore neque consectetur laborum eos eligendi a nihil vitae maiores quisquam.
-                    </p>
-                </div>
-            </div>
+            {% endfor %}
 
     </main>
 {% endblock index %}

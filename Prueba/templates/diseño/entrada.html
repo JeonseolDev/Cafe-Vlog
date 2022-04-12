@@ -1,9 +1,10 @@
 {% extends 'diseño/index.html' %}
 {% block index %}
+{% load static %}
     <main class="contenedor">
         <h3 class="centrar-texto">Tipos de granos</h3>
         
-        <img src="static/img/blog1.jpg" alt="imagen del blog">
+        <img src={% static "img/blog1.jpg" %} alt="imagen del blog">
         <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odit modi deserunt soluta accusamus quia nam sed doloribus quos eveniet. Voluptatum excepturi accusantium vero voluptatem necessitatibus maxime nostrum assumenda tenetur explicabo!</p>
     </main>
 {% endblock index %}

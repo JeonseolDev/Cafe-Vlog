@@ -35,11 +35,14 @@
         </div>
         <div class="or">O</div>
     </div>
+    {{form.errors.username}}
+    {{form.errors.password2}}
+    
     {% if messages %}  
         <ul>   
             {% for message in messages %}  
                 <li>{{ message }}</li>  
-                {% endfor %}  
+            {% endfor %}  
         </ul>   
     {% endif %}  
 {% comment %}     

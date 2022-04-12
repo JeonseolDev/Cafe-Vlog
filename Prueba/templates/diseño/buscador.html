@@ -2,19 +2,22 @@
 {% block buscador %}
 <form action="" method="GET" >
     {% csrf_token %}
-    <div class="cursos_form">
+    <div class="buscador_form">
         {{buscador}}
     <input type="submit", value="Buscar">
     </div>
 </form>
+
 {% if dato %}
     Se busco {{dato}}
-    {% for curso in cursos %}
+{% for curso in cursos %}
     <li>
         {{curso}}
     </li>
     {% endfor %}
 {% else %}
-    No se busco nada.
+
 {% endif %}
+
+
 {% endblock buscador %}

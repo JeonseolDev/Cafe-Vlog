@@ -4,26 +4,23 @@
 <div class="row">
 	<div class="col-md">
 		<div class="card card-body">
-			<h5>usuario:</h5>
+			<h3>Usuario:{{usuario.nombre}}</h3>
 			<hr>
-			<a class="btn btn-outline-info  btn-sm btn-block" href="">Update usuario</a>
-			<a class="btn btn-outline-danger  btn-sm btn-block" href="">Delete usuario</a>
-
 		</div>
 	</div>
 
 	<div class="col-md">
 		<div class="card card-body">
-			<h5>Contact Information</h5>
+			<h5>Contacto</h5>
 			<hr>
 			<p>Email: {{usuario.email}}</p>
-			<p>Phone: {{usuario.phone}}</p>
+			<p>Phone: {{usuario.telefono}}</p>
 		</div>
 	</div>
 
 	<div class="col-md">
 		<div class="card card-body">
-			<h5>Total Orders</h5>
+			<h5>Cursos:</h5>
 			<hr>
 			<h1 style="text-align: center;padding: 10px">{{order_count}}</h1>
 		</div>
@@ -37,7 +34,7 @@
 		<div class="card card-body">
 			<form method="get">
 
-		    <button class="btn btn-primary" type="submit">Search</button>
+		    <button class="btn btn-primary" type="submit">Buscar</button>
 		  </form>
 		</div>
 	</div>
@@ -51,23 +48,21 @@
 			<table class="table table-sm">
 				<tr>
 					<th>Curso</th>
-					<th>Categoria</th>
 					<th>Fecha</th>
 					<th>Estado</th>
-					<th>Update</th>
+					<th>Modificar</th>
 					<th>Remover</th>
 				</tr>
 
 				{% for order in orders %}
 
 				<tr>
-					<td>{{order.comprador}}</td>
-					<td>{{order.producto}}</td>
-					<td>{{order.data_creada}}</td>
-					<td>{{order.status}}</td>
-					<td><a class="btn btn-sm btn-info" href="{% url 'update_order' order.id %}">Update</a></td>
+					<td>{{order.cursada}}</td>
+					<td>{{order.fecha}}</td>
+					<td>{{order.estado}}</td>
+					<td><a class="btn btn-sm btn-info" href="{% url 'modificar_compra' order.id %}">Modificar</a></td>
 
-					<td><a class="btn btn-sm btn-danger" href="{% url 'delete_order' order.id %}">Delete</a></td>
+					<td><a class="btn btn-sm btn-danger" href="{% url 'borrar_compra' order.id %}">Remover</a></td>
 				</tr>
 				{% endfor %}
 

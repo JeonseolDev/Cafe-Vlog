@@ -48,6 +48,7 @@ h2 {
 
 h3 {
     font-size: 3.2rem;
+    margin: 32px 0px;
 }
 
 h4 {
@@ -473,10 +474,22 @@ button.social-signin.google {
     font-size: 15px;
 }
 
+.buscador_form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    margin: 10px 35%;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
 .cursos_form{
-    display: inline-block;
-    margin: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     padding: 10px;
+    gap: 5px;
+    margin: 10px 20%;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
 }
 
@@ -513,3 +526,59 @@ button.social-signin.google {
   font-size: 15px;
   transition: 0.2s ease;
 }
+
+.form-control:focus {
+    box-shadow: none;
+    border-color: #BA68C8
+}
+
+.profile-button {
+    background: rgb(99, 39, 120);
+    box-shadow: none;
+    border: none
+}
+
+.profile-button:hover {
+    background: #682773
+}
+
+.profile-button:focus {
+    background: #682773;
+    box-shadow: none
+}
+
+.profile-button:active {
+    background: #682773;
+    box-shadow: none
+}
+
+.back:hover {
+    color: #682773;
+    cursor: pointer
+}
+
+.labels {
+    font-size: 11px
+}
+
+.add-experience:hover {
+    background: #BA68C8;
+    color: #fff;
+    cursor: pointer;
+    border: solid 1px #BA68C8
+}
+
+.recuperar_cuenta{
+    position: absolute;
+    display: inline-block;
+    height: 60px;
+    text-align: center;
+    margin-top: 150px;
+    margin-left: 00px;
+    padding: 1px 6px;
+  }
+
+.btn {
+    line-height: 2.5;
+}
+

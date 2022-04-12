@@ -6,10 +6,12 @@
     <div id="login-box" class = "login">
         <div class="left">
         <span class="loginwith">Iniciar Sesion</span>
+        <a href="{% url 'reset_password' %}" class="recuperar_cuenta">Has olvidado tu contraseña?</a>
         <input type="text" name="username" placeholder="Username" />
         <input type="password" name="password" placeholder="Password" />      
         <input type="submit" name="signup_submit" value="Entrar" />
         <a href={% url 'register' %} class="register_submit">Registrate</a>
+        
         </div>
         
         <div class="right">
@@ -21,12 +23,13 @@
         </div>
         <div class="or">O</div>
     </div>
+    
 </form>  
-{% if messages %}  
+    {% if messages %}  
         <ul>   
             {% for message in messages %}  
                 <li>{{ message }}</li>  
-                {% endfor %}  
+            {% endfor %}  
         </ul>   
     {% endif %}  
 <script>

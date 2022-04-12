@@ -9,6 +9,7 @@
     <title>Cafe</title>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css">
     <link href={% static "css/normalize.css" %} rel="stylesheet" />
     <link href={% static "css/style.css" %} rel="stylesheet" />
 </head>
@@ -21,13 +22,15 @@
                     <h1 class="logo__nombre no-margin centrar-texto">Blog<span class="logo__bold">DeCafé</span></h1>
                 </a>
                 <nav class="navegacion">
-                    <a class="navegacion__enlace" href={% url 'Nosotros' %}>Nosotros</a>
+                    <a class="navegacion__enlace" href={% url 'Sobremi' %}>Sobre mi</a>
                     <a class="navegacion__enlace" href={% url 'Cursos' %}>Cursos</a>
+                    {% if user.is_superuser %}
                     <a class="navegacion__enlace" href={% url 'productos' %}>Configurar</a>
                     <a class="navegacion__enlace" href="{% url 'usuarios'%}">Usuarios</a>
+                    {% endif %}
                     <a class="navegacion__enlace" href={% url 'Contacto' %}>Contacto</a>
                     {% if user.is_authenticated %}
-                    <span class="navegacion__enlace">Hola {{request.user}}</span>
+                    <a class="navegacion__enlace" href="{% url 'user' %}"><span>Hola {{request.user.usuario}}</span></a>
                     <a class="navegacion__enlace" href="{% url 'logout' %}">Logout</a>
                     {% else %}
                     <a class="navegacion__enlace" href="{% url 'login' %}">Login/Registro</a>
@@ -53,7 +56,7 @@
                     <div class="entrada__contenido">
                         <h4 class="no-margin">Tipos de grano de café</h4>
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur, qui. Architecto officiis eum possimus cupiditate ad molestiae, accusantium molestias saepe fugiat obcaecati officia assumenda. Beatae ducimus vel quod obcaecati ea.</p>
-                        <a href="entrada.html" class="boton boton--primario">Leer entrada</a>
+                        <a href="{% url 'entrada' %}" class="boton boton--primario">Leer entrada</a>
                     </div>
 
             </article>
@@ -64,7 +67,7 @@
                     <div class="entrada__contenido">
                         <h4 class="no-margin">Deliciosas recetas del café</h4>
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur, qui. Architecto officiis eum possimus cupiditate ad molestiae, accusantium molestias saepe fugiat obcaecati officia assumenda. Beatae ducimus vel quod obcaecati ea.</p>
-                        <a href="entrada.html" class="boton boton--primario">Leer entrada</a>
+                        <a href="{% url 'entrada' %}" class="boton boton--primario">Leer entrada</a>
                     </div>
 
             </article>
@@ -75,7 +78,7 @@
                     <div class="entrada__contenido">
                         <h4 class="no-margin">Beneficios del café</h4>
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur, qui. Architecto officiis eum possimus cupiditate ad molestiae, accusantium molestias saepe fugiat obcaecati officia assumenda. Beatae ducimus vel quod obcaecati ea.</p>
-                        <a href="entrada.html" class="boton boton--primario">Leer entrada</a>
+                        <a href="{% url 'entrada' %}" class="boton boton--primario">Leer entrada</a>
                     </div>
             </article>
         </main>
@@ -91,7 +94,7 @@
                     <p class="widget-curso__label">Cupo: 
                         <span class="widget-curso__info">20</span>
                     </p>
-                    <a href="entrada.html" class="boton boton--secundario">Mas informacion</a>
+                    <a href={% url 'entrada' %} class="boton boton--secundario">Mas informacion</a>
                 </li>
                 <li class="widget-curso">
                     <h4 class="no-margin">4 Recetas de cafe para principiantes</h4>
@@ -101,11 +104,13 @@
                     <p class="widget-curso__label">Cupo: 
                         <span class="widget-curso__info">20</span>
                     </p>
-                    <a href="entrada.html" class="boton boton--secundario">Mas informacion</a>
+                    <a href="{% url 'entrada' %}" class="boton boton--secundario">Mas informacion</a>
                 </li>
             </ul>
         </aside>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 {% endblock index %}
     <footer class="footer">
         <div class="contenedor">

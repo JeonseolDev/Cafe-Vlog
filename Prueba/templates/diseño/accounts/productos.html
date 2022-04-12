@@ -7,6 +7,19 @@
         <div class="card card-body">
             <h1 >Cursos</h1>
         </div>
+        <form action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="cursos_form">
+                <span>Cursos:<span><input type="text" name="curso" class="input_modify">
+                <span>Camada:<span><input type="text" name="camada" class="input_modify">
+                <span>Precio:</span><input type="number" name="precio" class="input_modify input_number">
+                <span>Descripcion:</span><input type="text" name="descripcion" class="input_modify ">
+                {{miFormulario.imagen}}
+                {{miFormulario.presentacion}}
+                {{miFormulario.media}}
+            <input type="submit", value="Crear" class="cursos_form_button">
+            </div>
+        </form>
         <div class="card card-body">
             <table class="table">
                 <tr>
@@ -20,8 +33,8 @@
                         <td>{{i.nombre}}</td>
                         <td>{{i.camada}}</td>
                         <td>{{i.precio}}</td>
-                        <td><a href="{% url 'update_order' i.id %}">Upgradear</a></td>
-                        <td><a href="{% url 'delete_order' i.id %}">Remover</a></td>
+                        <td><a href="{% url 'modificar_curso' i.id %}">Modificar</a></td>
+                        <td><a href="{% url 'borrar_curso' i.id %}">Remover</a></td>
                     </tr>
                 {% endfor %}
                 

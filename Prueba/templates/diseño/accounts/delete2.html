@@ -9,10 +9,10 @@
 
 			<p>Deseas eliminarlo? "{{item}}"?</p>
 
-			<form action="{% url 'borrar_curso' item.id  %}" method="POST">
+			<form action="{% url 'borrar_compra' item.id  %}" method="POST">
 				
 				{% csrf_token %}
-				<a class="btn btn-warning" href="{% url 'productos' %}">Cancelar</a>
+				<a class="btn btn-warning" href="{% url 'usuarios' %}">Cancelar</a>
 
 				<input class="btn btn-danger" type="submit" name="Confirm">
 			</form>
