@@ -5,18 +5,19 @@
 
         <div class="contacto-bg"></div>
 
-        <form class="formulario">
+        <form class="formulario" method="POST">
+            {% csrf_token %}
             <div class="campo">
                 <label class="campo__label" for="nombre">Nombre</label>
-                <input class="campo__field" type="text" placeholder="Tu Nombre" id="nombre">
+                <input class="campo__field" type="text" placeholder="Tu Nombre" id="nombre" name="nombre">
             </div>
             <div class="campo">
                 <label class="campo__label" for="email">Email</label>
-                <input class="campo__field" type="email" placeholder="Tu Email" id="email">
+                <input class="campo__field" type="email" placeholder="Tu Email" id="email" name="email">
             </div>
             <div class="campo">
                 <label class="campo__label" for="mensaje">Mensaje</label>
-                <textarea class="campo__field campo__field--textarea" id="mensaje" placeholder="Tu Mensaje"></textarea>
+                <textarea class="campo__field campo__field--textarea" id="message" placeholder="Tu Mensaje" name="mensaje"></textarea>
             </div>
             <div class="campo">
                 <input type="submit" value="Enviar" class="boton boton--primario"

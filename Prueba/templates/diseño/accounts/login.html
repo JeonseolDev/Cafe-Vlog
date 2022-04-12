@@ -16,10 +16,9 @@
         
         <div class="right">
         <span class="loginwith">Iniciar Sesion<br/>Redes Sociales</span>
-        
-        <button class="social-signin facebook">Entrar con Facebook</button>
-        <button class="social-signin twitter">Entrar con Twitter</button>
-        <button class="social-signin google">Entrar con Google+</button>
+        <button class="social-signin facebook" href="{% url "social:begin" "facebook" %}">Entrar con Facebook</button>
+        <button class="social-signin twitter" href="{% url "social:begin" "twitter" %}">Entrar con Twitter</button>
+        <button class="social-signin google" href="{% url "social:begin" "twitter" %}">Entrar con Google+</button>
         </div>
         <div class="or">O</div>
     </div>

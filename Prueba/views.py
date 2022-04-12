@@ -4,10 +4,11 @@ from django.shortcuts import redirect, render
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
 from .models import Curso, Ordene, Producto, Usuario
-from Prueba.forms import CreateUser, CursoFormulario, BusquedaCurso, OrdenesForm, OrderForm, ProfileForm
+from Prueba.forms import CreateUser, CursoFormulario, BusquedaCurso, OrdenesForm, OrderForm, ProfileForm, ContactForm
 from django.contrib import messages
 from django.contrib.auth.models import Group
 from django.contrib.auth.decorators import permission_required, user_passes_test, login_required
+from django.core.mail import send_mail, BadHeaderError
 
 
 def inicio(request):
@@ -26,10 +27,28 @@ def sobremi(request):
     return render(request, "templates/diseño/sobremi.html", {})
 
 
-@login_required
+@login_required(login_url="login")
 def contacto(request):
 
-    return render(request, "templates/diseño/contacto.html", {})
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            asunto = "Adquirir Curso" 
+            informacion = {
+            'nombre': form.cleaned_data['nombre'], 
+            'email': form.cleaned_data['email'], 
+            'mensaje':form.cleaned_data['mensaje'], 
+            }
+            mensaje = "\n".join(informacion.values())
+
+            try:
+                send_mail(asunto, mensaje, 'rodrigo.javi@hotmail.com', ['rodrigo.javi@hotmail.com']) 
+            except BadHeaderError:
+                return HttpResponse('Invalid header found.')
+            return redirect ("Contacto")
+        
+    form = ContactForm()
+    return render(request, "diseño/contacto.html", {'form':form})
     
 
 def entrada(request):
@@ -53,13 +72,12 @@ def login_view(request):
     return render(request, 'diseño/accounts/login.html', context)
 
 
-@login_required
+@login_required(login_url="login")
 def logout_view(request):
     logout(request)
     return redirect('login')
 
 
-@user_passes_test(lambda u: u.is_anonymous, login_url="inicio")
 def register_view(request):
     form = CreateUser()
     if request.method == 'POST':
@@ -77,7 +95,7 @@ def register_view(request):
                 email=email,
                 )
 
-            messages.success(request, 'Account was created for ' + username)
+            messages.success(request, 'Cuenta creada ' + username)
 
             return redirect('login')
         
@@ -86,13 +104,13 @@ def register_view(request):
     return render(request, 'diseño/accounts/register.html', context)
 
 
-@login_required
+@login_required(login_url="login")
 def cursos(request):
 
     return render(request, "diseño/cursos.html", {})
 
 
-@login_required
+@login_required(login_url="login")
 def curso(request):
     
     productos = Curso.objects.all()
@@ -181,7 +199,7 @@ def borrar_curso(request, pk):
 	return render(request, 'diseño/accounts/delete.html', context)
 
 
-@login_required
+@login_required(login_url="login")
 def user_page(request):
     
     orders = request.user.usuario.ordene_set.all()

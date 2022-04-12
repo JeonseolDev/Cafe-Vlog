@@ -10,7 +10,6 @@
     </form>
     <a href="{% url 'Cursos_buscar' %}" class="buscador">Buscador de Cursos</a>
 {% endblock buscador %}
-
     <main class="contenedor">
         <h3 class="centrar-texto">Nuestros Proximos Cursos y Talleres</h3>
         {% for i in productos %}  
@@ -31,7 +30,6 @@
                         {{i.presentacion | safe}}
                     </p>
                 </div>
-                
             </div>
             {% endfor %}
 
