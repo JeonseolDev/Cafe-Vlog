@@ -87,7 +87,7 @@ def register_view(request):
             username = form.cleaned_data.get('username')
             email = form.cleaned_data.get('email')
 
-            group = Group.objects.get(name='usuario')
+            group = Group.objects.get(name='Usuario')
             user.groups.add(group)
             Usuario.objects.create(
                 user=user,
