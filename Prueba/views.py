@@ -13,18 +13,18 @@ from django.core.mail import send_mail, BadHeaderError
 
 def inicio(request):
 
-    return render(request, "templates/diseño/index.html", {})
+    return render(request, "diseño/index.html", {})
 
 
 @permission_required('usuario', login_url="login")
 def cursos(request):
 
-    return render(request, "templates/diseño/cursos.html", {})
+    return render(request, "diseño/cursos.html", {})
 
 
 def sobremi(request):
 
-    return render(request, "templates/diseño/sobremi.html", {})
+    return render(request, "diseño/sobremi.html", {})
 
 
 @login_required(login_url="login")
@@ -33,7 +33,7 @@ def contacto(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
-            asunto = "Adquirir Curso" 
+            asunto = "Adquirir" 
             informacion = {
             'nombre': form.cleaned_data['nombre'], 
             'email': form.cleaned_data['email'], 
@@ -53,7 +53,7 @@ def contacto(request):
 
 def entrada(request):
     
-    return render(request, "templates/diseño/entrada.html", {})
+    return render(request, "diseño/entrada.html", {})
 
 
 @user_passes_test(lambda u: u.is_anonymous, login_url="inicio")
