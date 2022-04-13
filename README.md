@@ -9,6 +9,7 @@ Funciones: <br>
 .Pagina contacto para que el usuari pueda enviar un email correpsondiente. <br>
 .Perfil y editar perfil con imagen. <br>
 
-Enlace al video: <br>
+Enlace a Heroku: https://jeonseol-cafe-blog.herokuapp.com/
 
-https://mega.nz/file/TJAFjILS#s8cRQDtAidk9bgja2MpcanW9iev2DJoUixXIMFQAfGQ
+Enlace al video: https://mega.nz/file/TJAFjILS#s8cRQDtAidk9bgja2MpcanW9iev2DJoUixXIMFQAfGQ
+
