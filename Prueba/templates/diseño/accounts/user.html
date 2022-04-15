@@ -52,13 +52,12 @@
 			<th>Estado</th>
 		</tr>
 
-		{% for order in ordenes %}
+		{% for order in orders %}
 		
 		<tr>
-			<td>{{order.product}}</td>
-			<td>{{order.note}}</td>
-			<td>{{order.date_created}}</td>
-			<td>{{order.status}}</td>
+			<td>{{order.cursada}}</td>
+			<td>{{order.fecha}}</td>
+			<td>{{order.estado}}</td>
 
 			<td><a class="btn btn-sm btn-danger" href="{% url 'borrar_curso' order.id %}">Borrar</a></td>
 		</tr>

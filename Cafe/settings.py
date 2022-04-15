@@ -28,7 +28,8 @@ SECRET_KEY = 'django-insecure-mq(hs9x^buk*meigx*sptp9pxa5ad=#2bnnjsmcjsyf61@2p%^
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
+
 
 
 # Application definition
@@ -181,3 +182,7 @@ EMAIL_HOST_USER = 'jeonseoldjango@gmail.com'
 EMAIL_HOST_PASSWORD = 'pruebaparacurso'
 
 django_heroku.settings(locals())
+
+SECURE_SSL_REDIRECT=False
+SESSION_COOKIE_SECURE=False
+CSRF_COOKIE_SECURE=False
